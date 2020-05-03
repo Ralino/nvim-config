@@ -1,3 +1,4 @@
+" vim: foldmethod=marker
 " Base config with sane defaults
 " should be kept compatible with vim, nvim and embedded nvim
 
@@ -6,7 +7,6 @@ set nocompatible
 
 "FIXME consider using $XDG_CONFIG_HOME/nvim
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
 
 filetype plugin indent on
 syntax on
@@ -77,7 +77,7 @@ augroup END
 
 command! Retrail :%s/\s\+$//e
 
-"I am bad at typing, okay? :(
+"I am bad at typing
 command! W :w
 command! Wq :wq
 command! WQ :wq
@@ -91,6 +91,8 @@ endif
 
 command! CopyFilename :let @+=expand("%") | echo "Copied \"" . expand("%") . "\""
 command! CopyPath :let @+=expand("%:h") . "/" | echo "Copied \"" . expand("%:h") . "/\""
+
+command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
 " }}}
 
