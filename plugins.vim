@@ -102,6 +102,15 @@ ColorDark
 endif
 " }}}
 
+" surround {{{
+if s:hasPlugin('surround')
+
+nmap s ys
+vmap s S
+
+endif
+" }}}
+
 " FZF {{{
 if s:hasPlugin('fzf.vim')
 
@@ -228,4 +237,3 @@ set ttimeoutlen=10
 
 endif
 " }}}
-
