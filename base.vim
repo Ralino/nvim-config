@@ -75,8 +75,6 @@ augroup END
 
 " Commands {{{
 
-command! Retrail :%s/\s\+$//e
-
 "I am bad at typing
 command! W :w
 command! Wq :wq
@@ -92,11 +90,21 @@ endif
 command! CopyFilename :let @+=expand("%") | echo "Copied \"" . expand("%") . "\""
 command! CopyPath :let @+=expand("%:h") . "/" | echo "Copied \"" . expand("%:h") . "/\""
 
+command! Retrail :%s/\s\+$//e | let @/ = ""
+
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
 " }}}
 
 " Mappings {{{
+
+" Use <C-S> for window commands to solve conflict with terminal <C-W>
+map <C-S> <C-W>
+imap <C-S> <C-O><C-W>
+tmap <C-S> <C-\><C-N><C-W>
+
+tmap <C-N> <C-\><C-N>
+
 
 "Do not use Ex-mode, open command-line window instead
 noremap <silent> Q q:
