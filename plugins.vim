@@ -31,7 +31,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', {'branch': 'dev'}
 
 Plug 'airblade/vim-gitgutter'
 Plug 'ludovicchabant/vim-gutentags'
@@ -115,6 +115,12 @@ vmap s S
 endif
 " }}}
 
+" CamelCaseMotion {{{
+if s:hasPlugin('CamelCaseMotion')
+let g:camelcasemotion_key = '<leader>'
+endif
+" }}}
+
 " FZF {{{
 if s:hasPlugin('fzf.vim')
 
@@ -144,6 +150,7 @@ endif
 if s:hasPlugin('vimwiki')
 
 let g:vimwiki_use_mouse = 1
+let g:vimwiki_key_mappings = { 'global': 0 }
 
 endif
 " }}}
@@ -155,6 +162,8 @@ set signcolumn=yes
 set updatetime=500
 
 let g:gitgutter_map_keys = 1
+command! StageHunk GitGutterStageHunk
+command! StageUndo GitGutterUndoHunk
 
 endif
 " }}}
