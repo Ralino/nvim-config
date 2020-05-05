@@ -127,7 +127,7 @@ if s:hasPlugin('fzf.vim')
 let g:fzf_command_prefix = 'Fzf'
 nnoremap <silent> <C-P> :FzfFiles<CR>
 nnoremap <silent> <C-J> :FzfBuffers<CR>
-command! -nargs=* GStatus FzfGFiles? <args>
+command! GStatus FzfGFiles?
 command! -nargs=* Files FzfFiles <args>
 command! -nargs=* Rg FzfRg <args>
 
@@ -252,3 +252,32 @@ set ttimeoutlen=10
 
 endif
 " }}}
+
+" coc.nvim {{{
+if s:hasPlugin('coc.nvim')
+
+set shortmess+=c
+
+inoremap <silent><expr> <c-space> coc#refresh()
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+"TODO Create list of actions
+
+augroup COC
+  autocmd!
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+endif
+" }}}
+
