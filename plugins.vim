@@ -24,11 +24,13 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'bkad/CamelCaseMotion'
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install()} }
+if !filereadable('/usr/share/vim/vimfiles/plugin/fzf.vim')
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install()} }
+endif
 Plug 'junegunn/fzf.vim'
 
 Plug 'morhetz/gruvbox'
-Plug 'sheerun/polyglot'
+Plug 'sheerun/vim-polyglot'
 Plug 'vimwiki/vimwiki'
 
 Plug 'airblade/vim-gitgutter'
@@ -103,7 +105,7 @@ endif
 " }}}
 
 " surround {{{
-if s:hasPlugin('surround')
+if s:hasPlugin('vim-surround')
 
 nmap s ys
 vmap s S
@@ -159,6 +161,7 @@ endif
 if s:hasPlugin('vim-gutentags')
 
 let g:gutentags_cache_dir="~/.cache/tagfiles"
+let g:gutentags_define_advanced_commands=1
 
 endif
 " }}}

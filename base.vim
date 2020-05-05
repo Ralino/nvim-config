@@ -41,6 +41,7 @@ augroup UNDOFILE
 augroup END
 
 set shiftwidth=2
+set expandtab
 set smarttab
 
 set textwidth=90
@@ -101,9 +102,9 @@ command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincm
 " Use <C-S> for window commands to solve conflict with terminal <C-W>
 map <C-S> <C-W>
 imap <C-S> <C-O><C-W>
-tmap <C-S> <C-\><C-N><C-W>
+tnoremap <C-S> <C-\><C-N><C-W>
 
-tmap <C-N> <C-\><C-N>
+tnoremap <C-N> <C-\><C-N>
 
 
 "Do not use Ex-mode, open command-line window instead
