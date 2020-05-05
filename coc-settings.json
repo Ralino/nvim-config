@@ -1,0 +1,16 @@
+{
+  "coc.preferences.extensionUpdateCheck": "never",
+
+  "diagnostic.errorSign": " ",
+  "diagnostic.warningSign": " ",
+  "diagnostic.infoSign": "ℹ ",
+  "diagnostic.hintSign": " ",
+
+  "coc.preferences.rootPatterns": [
+        ".git",
+        ".hg",
+        ".projections.json",
+        "compile-commands.json"
+  ]
+
+}

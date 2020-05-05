@@ -120,6 +120,13 @@ map <silent> ü <c-]>
 " clear last search pattern
 map <silent> <leader>x :let @/ = ""<CR>
 
+" completion menu mappings
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
+inoremap <silent><expr> <C-J> pumvisible() ? "\<Down>" : "\<C-J>"
+inoremap <silent><expr> <C-K> pumvisible() ? "\<Up>" : "\<C-K>"
+inoremap <silent><expr> <C-L> pumvisible() ? "\<C-Y>" : "\<C-L>"
+
 " }}}
 
 " Filetype specifics {{{
@@ -140,6 +147,8 @@ augroup FILETYPE_CONF
   au FileType tex setlocal spell
   "Vimwiki
   au FileType vimwiki setlocal nowrap
+  "Comments in json
+  au FileType json syntax match Comment +\/\/.\+$+
 
 augroup END
 " }}}
