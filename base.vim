@@ -106,6 +106,14 @@ tnoremap <C-S> <C-\><C-N><C-W>
 
 tnoremap <C-N> <C-\><C-N>
 
+"buffer/tab switching
+noremap gb :bnext<CR>
+noremap gB :bprevious<CR>
+if has("nvim")
+  noremap <silent><expr> <C-Q> len(nvim_list_tabpages()) == 1 ? ":bnext\<CR>" : ":tabnext\<CR>"
+else
+  noremap <silent> <C-Q> :bnext<CR>
+endif
 
 "Do not use Ex-mode, open command-line window instead
 noremap <silent> Q q:
