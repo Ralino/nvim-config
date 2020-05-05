@@ -124,11 +124,12 @@ endif
 " FZF {{{
 if s:hasPlugin('fzf.vim')
 
-nnoremap <silent> <leader>E :Files<CR>
-nnoremap <silent> <leader>e :Buffers<CR>
-nnoremap <silent> <leader>f :BLines<CR>
-nnoremap <silent> <leader>c :Commands<CR>
-nnoremap <leader>F :Rg<space>
+let g:fzf_command_prefix = 'Fzf'
+nnoremap <silent> <C-P> :FzfFiles<CR>
+nnoremap <silent> <C-J> :FzfBuffers<CR>
+command! -nargs=* GStatus FzfGFiles? <args>
+command! -nargs=* Files FzfFiles <args>
+command! -nargs=* Rg FzfRg <args>
 
 endif
 " }}}
