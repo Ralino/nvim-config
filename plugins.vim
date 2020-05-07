@@ -125,9 +125,10 @@ endif
 if s:hasPlugin('fzf.vim')
 
 let g:fzf_command_prefix = 'Fzf'
-nnoremap <silent> <C-P> :FzfFiles<CR>
-nnoremap <silent> <C-J> :FzfBuffers<CR>
+nnoremap <silent> <C-F> :FzfFiles<CR>
+nnoremap <silent> <C-B> :FzfBuffers<CR>
 command! GStatus FzfGFiles?
+command! Gstatus FzfGFiles?
 command! -nargs=* Files FzfFiles <args>
 command! -nargs=* Rg FzfRg <args>
 

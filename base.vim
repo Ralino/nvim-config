@@ -110,7 +110,8 @@ tnoremap <C-N> <C-\><C-N>
 noremap gb :bnext<CR>
 noremap gB :bprevious<CR>
 if has("nvim")
-  noremap <silent><expr> <C-Q> len(nvim_list_tabpages()) == 1 ? ":bnext\<CR>" : ":tabnext\<CR>"
+  noremap <silent><expr>  <C-Q> len(nvim_list_tabpages()) == 1 ? ":bnext\<CR>" : ":tabnext\<CR>"
+  tnoremap <silent><expr> <C-Q> len(nvim_list_tabpages()) == 1 ? "<C-\><C-N>:bnext\<CR>" : "<C-\><C-N>:tabnext\<CR>"
 else
   noremap <silent> <C-Q> :bnext<CR>
 endif
@@ -129,10 +130,10 @@ map <silent> ü <c-]>
 map <silent> <leader>x :let @/ = ""<CR>
 
 " completion menu mappings
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
-inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
-inoremap <silent><expr> <C-J> pumvisible() ? "\<Down>" : "\<C-J>"
-inoremap <silent><expr> <C-K> pumvisible() ? "\<Up>" : "\<C-K>"
+inoremap <silent><expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<Up>" : "\<S-Tab>"
+inoremap <silent><expr> <C-J> pumvisible() ? "\<C-N>" : "\<C-J>"
+inoremap <silent><expr> <C-K> pumvisible() ? "\<C-P>" : "\<C-K>"
 inoremap <silent><expr> <C-L> pumvisible() ? "\<C-Y>" : "\<C-L>"
 
 " }}}
