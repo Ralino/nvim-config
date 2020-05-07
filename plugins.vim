@@ -6,6 +6,32 @@ function! s:hasPlugin(name)
   return has_key(g:plugs, a:name)
 endfunction
 
+function! s:hasItem(list, id, ...)
+  let key = 'id'
+  if a:0 == 1
+    let key = a:1
+  endif
+  for item in a:list
+    if item[key] == a:id
+      return v:true
+    endif
+  endfor
+  return v:false
+endfunction
+
+function! s:getItem(list, id, ...)
+  let key = 'id'
+  if a:0 == 1
+    let key = a:1
+  endif
+  for item in a:list
+    if item[key] == a:id
+      return item
+    endif
+  endfor
+  return v:false
+endfunction
+
 "}}}
 
 " Plugins {{{
@@ -131,6 +157,16 @@ command! GStatus FzfGFiles?
 command! Gstatus FzfGFiles?
 command! -nargs=* Files FzfFiles <args>
 command! -nargs=* Rg FzfRg <args>
+
+function! s:fzfFromItemList(list)
+  let ids = []
+  for item in a:list
+    if item.req()
+      call add(ids, item.id)
+    endif
+  endfor
+  call fzf#run(fzf#wrap({'source': ids, 'sink': {id -> s:getItem(a:list, id).cmd()}}))
+endfunction
 
 endif
 " }}}
@@ -274,7 +310,24 @@ function! s:show_documentation()
   endif
 endfunction
 
-"TODO Create list of actions
+if s:hasPlugin('fzf.vim')
+  let g:custom_action_list = [
+   \ { 'id': 'quickfix', 'req': {-> !empty(CocAction('quickfixes'))}, 'cmd': {-> CocAction('doQuickfix') } },
+   \ { 'id': 'switch header/source', 'req': {-> s:hasItem(CocAction('commands'), 'clangd.switchSourceHeader')}, 'cmd': {-> CocAction('runCommand', 'clangd.switchSourceHeader')}},
+   \ { 'id': 'rename symbol', 'req': {-> CocHasProvider('rename')}, 'cmd': {-> CocAction('rename') } },
+   \ { 'id': 'open link', 'req': {-> CocHasProvider('documentLink')},'cmd': {-> CocAction('openLink') } },
+   \ { 'id': 'go to reference', 'req': {-> CocHasProvider('reference')}, 'cmd': {-> CocAction('jumpReferences') } },
+   \ { 'id': 'go to declaration', 'req': {-> CocHasProvider('declaration')}, 'cmd': {-> CocAction('jumpDeclaration') } },
+   \ { 'id': 'go to implementation', 'req': {-> CocHasProvider('implementation')}, 'cmd': {-> CocAction('jumpImplementation') } },
+   \ { 'id': 'go to type definition', 'req': {-> CocHasProvider('typeDefinition')}, 'cmd': {-> CocAction('jumpTypeDefinition') } },
+   \ { 'id': 'go to definition', 'req': {-> CocHasProvider('definition')}, 'cmd': {-> CocAction('jumpDefinition') } },
+   \ { 'id': 'format buffer', 'req': {-> CocHasProvider('format')}, 'cmd': {-> CocAction('format') } },
+   \ { 'id': 'fold buffer', 'req': {-> CocHasProvider('foldingRange')}, 'cmd': {-> CocAction('fold') } },
+   \ { 'id': 'list diagnostics', 'req': {-> !empty(CocAction('diagnosticList'))}, 'cmd': {-> execute("CocList diagnostics")} },
+   \]
+
+  map <leader>l :call <SID>fzfFromItemList(g:custom_action_list)<CR>
+endif
 
 augroup COC
   autocmd!
