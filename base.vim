@@ -90,6 +90,28 @@ command! QA :qa
 
 if !has("nvim")
   command! SudoW :w !sudo tee % > /dev/null
+else
+  function! s:runInteractive(cmd)
+    let buf = nvim_create_buf(v:false, v:true)
+    let window_opts = {
+          \ 'relative': 'editor',
+          \ 'width': 40, 'height': 3,
+          \ 'row': (&lines / 2 - 2), 'col': (&columns / 2 - 15),
+          \ 'style': 'minimal'
+          \ }
+    noautocmd call nvim_open_win(buf, v:true, window_opts)
+    call termopen(a:cmd)
+    normal i
+  endfunction
+
+  function! s:nvimSudoW()
+    let tmpfile = tempname()
+    exe "write! >> " . tmpfile
+    exe "autocmd BufEnter * ++once edit! | call jobstart(['rm','".tmpfile."'])"
+    call s:runInteractive("sudo sh -c 'cat " . tmpfile . " > " . expand("%") . "'")
+  endfunction
+
+  command! SudoW call <SID>nvimSudoW()
 endif
 
 command! CopyFilename :let @+=expand("%") | echo "Copied \"" . expand("%") . "\""
