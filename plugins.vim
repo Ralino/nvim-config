@@ -172,7 +172,7 @@ endif
 " }}}
 
 " polyglot {{{
-if s:hasPlugin('polyglot')
+if s:hasPlugin('vim-polyglot')
 
 let g:polyglot_disabled = [
   \ 'c++11',
@@ -324,14 +324,24 @@ if s:hasPlugin('fzf.vim')
    \ { 'id': 'format buffer', 'req': {-> CocHasProvider('format')}, 'cmd': {-> CocAction('format') } },
    \ { 'id': 'fold buffer', 'req': {-> CocHasProvider('foldingRange')}, 'cmd': {-> CocAction('fold') } },
    \ { 'id': 'list diagnostics', 'req': {-> !empty(CocAction('diagnosticList'))}, 'cmd': {-> execute("CocList diagnostics")} },
+   \ { 'id': 'restart coc', 'req': {-> v:true}, 'cmd': {-> execute("CocRestart")} },
    \]
 
   map <leader>l :call <SID>fzfFromItemList(g:custom_action_list)<CR>
 endif
 
+let g:coc_snippet_next = '<C-l>'
+let g:coc_snippet_prev = '<C-h>'
+"c-h is in conflict with auto mapping, add other mappings though:
+let g:coc_selectmode_mapping = 0
+snoremap <silent> <BS> <c-g>c
+snoremap <silent> <DEL> <c-g>c
+snoremap <c-r> <c-g>"_c<c-r>
+
 augroup COC
   autocmd!
   autocmd CursorHold * silent call CocActionAsync('highlight')
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 endif
 " }}}
 

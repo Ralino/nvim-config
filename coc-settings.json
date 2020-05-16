@@ -7,9 +7,12 @@
   "diagnostic.hintSign": " ",
 
   "coc.preferences.rootPatterns": [
+        "compile_commands.json",
         ".git",
         ".hg",
-        ".projections.json",
-        "compile-commands.json"
-  ]
+        ".projections.json"
+  ],
+  "signature.preferShownAbove": false,
+  "diagnostic.checkCurrentLine": true,
+  "suggest.preferCompleteThanJumpPlaceholder": true
 }
