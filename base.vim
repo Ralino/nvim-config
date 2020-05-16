@@ -22,6 +22,10 @@ set mouse=a
 set number
 set relativenumber
 set hidden
+set tildeop
+if has("nvim")
+  set inccommand=split
+endif
 
 set belloff=all
 set vb
