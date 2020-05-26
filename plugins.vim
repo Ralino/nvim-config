@@ -139,7 +139,7 @@ endif
 if s:hasPlugin('vim-surround')
 
 nmap s ys
-vmap s S
+xmap s S
 
 endif
 " }}}
@@ -156,6 +156,7 @@ if s:hasPlugin('fzf.vim')
 let g:fzf_command_prefix = 'Fzf'
 nnoremap <silent> <C-F> :FzfFiles<CR>
 nnoremap <silent> <C-B> :FzfBuffers<CR>
+nnoremap <silent><expr> <C-G> empty(tagfiles())? ":FzfBTags\<CR>" : ":FzfTags\<CR>"
 command! GStatus FzfGFiles?
 command! Gstatus FzfGFiles?
 command! -nargs=* Files FzfFiles <args>
