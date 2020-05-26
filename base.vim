@@ -47,6 +47,7 @@ augroup END
 set shiftwidth=2
 set expandtab
 set smarttab
+set tabstop=4
 
 set textwidth=90
 
@@ -61,6 +62,8 @@ set wildmenu
 set wildmode=longest:full,full
 
 set foldmethod=marker
+set foldnestmax=1
+
 set spelllang=de,en_us
 
 let mapleader = " "
@@ -120,6 +123,8 @@ command! CopyPath :let @+=expand("%:h") . "/" | echo "Copied \"" . expand("%:h")
 command! Retrail :%s/\s\+$//e | let @/ = ""
 
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+
+command! FoldFunc set foldmethod=syntax | set foldcolumn=1
 
 " }}}
 

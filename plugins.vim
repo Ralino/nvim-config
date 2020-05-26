@@ -96,12 +96,14 @@ function! s:darkBackground()
   hi Normal guibg=#060607
   hi CursorLineNr guibg=#282828
   hi LineNr guibg=#282828
+  hi Folded guibg=#282828
   augroup SETHIGHLIGHT
     autocmd!
     " same background as terminal -> transparency is still applied
     autocmd VimEnter * hi Normal guibg=#060607
     autocmd VimEnter * hi CursorLineNr guibg=#282828
     autocmd VimEnter * hi LineNr guibg=#282828
+    autocmd VimEnter * hi Folded guibg=#282828
   augroup END
 endfunction
 
