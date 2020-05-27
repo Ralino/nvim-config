@@ -57,7 +57,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
-Plug 'vimwiki/vimwiki', {'branch': 'dev'}
+Plug 'vimwiki/vimwiki'
 Plug 'metakirby5/codi.vim'
 
 Plug 'airblade/vim-gitgutter'
