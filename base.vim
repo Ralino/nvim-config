@@ -62,7 +62,6 @@ set wildmenu
 set wildmode=longest:full,full
 
 set foldmethod=marker
-set foldnestmax=1
 
 set spelllang=de,en_us
 
@@ -120,12 +119,39 @@ endif
 command! CopyFilename :let @+=expand("%") | echo "Copied \"" . expand("%") . "\""
 command! CopyPath :let @+=expand("%:h") . "/" | echo "Copied \"" . expand("%:h") . "/\""
 
-command! Retrail :%s/\s\+$//e | let @/ = ""
+command! Retrail :%s/\s\+$//e | let @/ = "cleared_search_fldjfklasdjfkl"
 
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
 command! FoldFunc set foldmethod=syntax | set foldcolumn=1
 
+" quick terminal
+function! s:quickTerminal(cmd)
+  let cmd = a:cmd
+  " FIXME allow win in all tabs
+  if !exists("g:quick_term_win") || win_id2tabwin(g:quick_term_win) == [0,0]
+    botright split
+    resize 10
+    set winfixheight
+    let g:quick_term_win = win_getid()
+    if empty(cmd)
+      let cmd = &shell . " -i"
+    endif
+  else
+    call win_gotoid(g:quick_term_win)
+    startinsert
+  endif
+  if !empty(cmd)
+    if has("nvim")
+      execute 'terminal ' . cmd
+    else
+      execute 'terminal ++curwin ' . cmd
+    endif
+    startinsert
+  endif
+endfunction
+
+command! -nargs=* -complete=shellcmd QuickTerm call <SID>quickTerminal(<q-args>)
 " }}}
 
 " Mappings {{{
@@ -137,15 +163,13 @@ tnoremap <C-S> <C-\><C-N><C-W>
 
 tnoremap <C-N> <C-\><C-N>
 
+"Quick terminal
+noremap <silent> <C-Q> :QuickTerm<CR>
+tnoremap <silent> <C-Q> <C-\><C-N><C-W>p
+
 "buffer/tab switching
 noremap gb :bnext<CR>
 noremap gB :bprevious<CR>
-if has("nvim")
-  noremap <silent><expr>  <C-Q> len(nvim_list_tabpages()) == 1 ? ":bnext\<CR>" : ":tabnext\<CR>"
-  tnoremap <silent><expr> <C-Q> len(nvim_list_tabpages()) == 1 ? "<C-\><C-N>:bnext\<CR>" : "<C-\><C-N>:tabnext\<CR>"
-else
-  noremap <silent> <C-Q> :bnext<CR>
-endif
 
 "Do not use Ex-mode, open command-line window instead
 noremap <silent> Q q:
@@ -158,7 +182,7 @@ map <silent> Ä }
 map <silent> ü <c-]>
 
 " clear last search pattern
-map <silent> <leader>x :let @/ = ""<CR>
+map <silent> <leader>x :let @/ = "cleared_search_fldjfklasdjfkl"<CR>
 
 " completion menu mappings
 inoremap <silent><expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
