@@ -59,7 +59,7 @@ Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'vimwiki/vimwiki'
 Plug 'metakirby5/codi.vim'
-
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle', 'TagbarOpen'] }
@@ -157,8 +157,6 @@ let g:fzf_command_prefix = 'Fzf'
 nnoremap <silent> <C-F> :FzfFiles<CR>
 nnoremap <silent> <C-B> :FzfBuffers<CR>
 nnoremap <silent><expr> <C-G> empty(tagfiles())? ":FzfBTags\<CR>" : ":FzfTags\<CR>"
-command! GStatus FzfGFiles?
-command! Gstatus FzfGFiles?
 command! -nargs=* Files FzfFiles <args>
 command! -nargs=* Rg FzfRg <args>
 
