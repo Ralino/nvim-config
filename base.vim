@@ -119,7 +119,7 @@ endif
 command! CopyFilename :let @+=expand("%") | echo "Copied \"" . expand("%") . "\""
 command! CopyPath :let @+=expand("%:h") . "/" | echo "Copied \"" . expand("%:h") . "/\""
 
-command! Retrail :%s/\s\+$//e | let @/ = "cleared_search_fldjfklasdjfkl"
+command! Retrail :%s/\s\+$//e | let @/ = "\\_$ cleared search"
 
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
@@ -181,8 +181,9 @@ map <silent> Ö {
 map <silent> Ä }
 map <silent> ü <c-]>
 
-" clear last search pattern
-map <silent> <leader>x :let @/ = "cleared_search_fldjfklasdjfkl"<CR>
+" clear last search pattern, empty pattern for some reason is replaced by a different
+" pattern in newer nvim and vim versions
+map <silent> <leader>x :let @/ = "\\_$ cleared search"<CR>
 
 " completion menu mappings
 inoremap <silent><expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
