@@ -332,8 +332,8 @@ if s:hasPlugin('fzf.vim')
   map <leader>l :call <SID>fzfFromItemList(g:custom_action_list)<CR>
 endif
 
-let g:coc_snippet_next = '<C-l>'
-let g:coc_snippet_prev = '<C-h>'
+let g:coc_snippet_next = '<C-n>'
+let g:coc_snippet_prev = '<C-p>'
 "c-h is in conflict with auto mapping, add other mappings though:
 let g:coc_selectmode_mapping = 0
 snoremap <silent> <BS> <c-g>c

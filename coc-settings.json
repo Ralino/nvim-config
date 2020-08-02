@@ -6,6 +6,11 @@
   "diagnostic.infoSign": "ℹ ",
   "diagnostic.hintSign": " ",
 
+  "list.insertMappings": {
+    "<C-j>": "normal:j",
+    "<C-k>": "normal:k"
+  },
+
   "coc.preferences.rootPatterns": [
         "compile_commands.json",
         ".git",
