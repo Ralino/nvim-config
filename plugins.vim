@@ -326,6 +326,8 @@ if s:hasPlugin('fzf.vim')
    \ { 'id': 'format buffer', 'req': {-> CocHasProvider('format')}, 'cmd': {-> CocAction('format') } },
    \ { 'id': 'fold buffer', 'req': {-> CocHasProvider('foldingRange')}, 'cmd': {-> CocAction('fold') } },
    \ { 'id': 'list diagnostics', 'req': {-> !empty(CocAction('diagnosticList'))}, 'cmd': {-> execute("CocList diagnostics")} },
+   \ { 'id': 'disable diagnostics', 'req': {-> !exists("b:coc_diagnostic_disable")}, 'cmd': {-> execute("let b:coc_diagnostic_disable=1 | CocRestart")} },
+   \ { 'id': 'enable diagnostics', 'req': {-> exists("b:coc_diagnostic_disable")}, 'cmd': {-> execute("unlet b:coc_diagnostic_disable | CocRestart")} },
    \ { 'id': 'restart coc', 'req': {-> v:true}, 'cmd': {-> execute("CocRestart")} },
    \]
 
