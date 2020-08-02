@@ -199,10 +199,12 @@ augroup FILETYPE_CONF
   autocmd!
 
   " OpenGL syntax settings
-  au BufNewFile,BufRead,BufEnter *.frag,*.vert,*.fp,*.glsl setf glsl
+  au BufNewFile,BufRead,BufEnter *.frag,*.vert,*.fp,*.glsl,*.vsh,*.fsh setf glsl
   " ROS launch files
   au BufNewFile,BufRead,BufEnter *.launch setf xml
   au BufNewFile,BufRead,BufEnter *.test setf xml
+  "the fuck vim?
+  au BufNewFile,BufRead,BufEnter *.tex setf tex
 
   " Makefiles require tabs
   au FileType make setlocal noexpandtab
