@@ -194,15 +194,20 @@ let g:vimwiki_key_mappings = { 'global': 0 }
 endif
 " }}}
 
+" fugitive {{{
+if s:hasPlugin('vim-fugitive')
+
+command! Gtree exe 'split | terminal' FugitivePrepare(['log', '--oneline', '--decorate', '--graph', '--all'])
+command! GTree  Gtree
+
+endif
+" }}}
+
 " gitgutter {{{
 if s:hasPlugin('vim-gitgutter')
 
 set signcolumn=yes
 set updatetime=500
-
-let g:gitgutter_map_keys = 1
-command! StageHunk GitGutterStageHunk
-command! StageUndo GitGutterUndoHunk
 
 endif
 " }}}
