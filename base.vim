@@ -49,8 +49,6 @@ set expandtab
 set smarttab
 set tabstop=4
 
-set textwidth=90
-
 set wrap
 set scrolloff=2
 set sidescrolloff=5
@@ -212,10 +210,14 @@ augroup FILETYPE_CONF
   au FileType yaml setlocal indentkeys-=0# indentkeys-=<:>
   "Latex
   au FileType tex setlocal spell
+  au FileType tex setlocal textwidth=90
   "Vimwiki
   au FileType vimwiki setlocal nowrap
+  au FileType vimwiki setlocal textwidth=90
   "Comments in json
   au FileType json syntax match Comment +\/\/.\+$+
-
+  "textwidth in plain text files
+  au FileType text setlocal textwidth=90
+  au FileType markdown setlocal textwidth=90
 augroup END
 " }}}
