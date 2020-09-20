@@ -203,6 +203,8 @@ augroup FILETYPE_CONF
   au BufNewFile,BufRead,BufEnter *.test setf xml
   "the fuck vim?
   au BufNewFile,BufRead,BufEnter *.tex setf tex
+  "octave
+  au BufNewFile,BufRead,BufEnter *.m setf octave
 
   " Makefiles require tabs
   au FileType make setlocal noexpandtab
