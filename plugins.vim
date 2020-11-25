@@ -34,6 +34,18 @@ endfunction
 
 "}}}
 
+" polyglot {{{
+
+" needs to be defined before it is loaded
+let g:polyglot_disabled = [
+  \ 'c++11',
+  \ 'c/c++',
+  \ 'python-compiler',
+  \ 'latex'
+  \]
+
+" }}}
+
 " Plugins {{{
 
 "Install vim-plug if not already installed
@@ -172,19 +184,6 @@ endfunction
 endif
 " }}}
 
-" polyglot {{{
-if s:hasPlugin('vim-polyglot')
-
-let g:polyglot_disabled = [
-  \ 'c++11',
-  \ 'c/c++',
-  \ 'python-compiler',
-  \ 'latex'
-  \]
-
-endif
-" }}}
-
 " vimwiki {{{
 if s:hasPlugin('vimwiki')
 
@@ -249,6 +248,7 @@ function s:startRemoteServer()
   endif
 endfunction()
 
+let g:tex_flavor = 'latex'
 let g:vimtex_complete_bib = {'simple': 1}
 let g:vimtex_quickfix_latexlog = {
       \ 'overfull' : 0,
@@ -348,4 +348,3 @@ augroup COC
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 endif
 " }}}
-
