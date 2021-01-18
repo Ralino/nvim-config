@@ -228,7 +228,7 @@ augroup FILETYPE_CONF
   au FileType vimwiki setlocal nowrap
   au FileType vimwiki setlocal textwidth=90
   "Comments in json
-  au FileType json syntax match Comment +\/\/.\+$+
+  au BufNewFile,BufRead,BufEnter *.json setf jsonc | set syntax=json | syntax match Comment +\/\/.*$+
   "textwidth in plain text files
   au FileType text setlocal textwidth=90
   au FileType markdown setlocal textwidth=90
