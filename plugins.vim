@@ -181,6 +181,10 @@ function! s:fzfFromItemList(list)
   call fzf#run(fzf#wrap({'source': ids, 'sink': {id -> s:getItem(a:list, id).cmd()}}))
 endfunction
 
+if has("win32")
+  let g:fzf_preview_window = []
+endif
+
 endif
 " }}}
 

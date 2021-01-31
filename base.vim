@@ -79,6 +79,13 @@ augroup JUMPTOLASTCURSORPOS
     \ endif
 augroup END
 
+if has("win32")
+  let &shell='powershell'
+  let &shellcmdflag='-NoProfile -c'
+  let &shellquote='"'
+  let &shellxquote=''
+endif
+
 " }}}
 
 " Commands {{{
@@ -136,7 +143,11 @@ function! s:quickTerminal(cmd)
     set winfixheight
     let g:quick_term_win = win_getid()
     if empty(cmd)
-      let cmd = &shell . " -i"
+      if has("win32")
+        let cmd = &shell
+      else
+        let cmd = &shell . " -i"
+      endif
     endif
   else
     call win_gotoid(g:quick_term_win)
@@ -220,7 +231,7 @@ augroup FILETYPE_CONF
   au FileType vimwiki setlocal nowrap
   au FileType vimwiki setlocal textwidth=90
   "Comments in json
-  au FileType json syntax match Comment +\/\/.\+$+
+  au BufNewFile,BufRead,BufEnter *.json setf jsonc | set syntax=json | syntax match Comment +\/\/.*$+
   "textwidth in plain text files
   au FileType text setlocal textwidth=90
   au FileType markdown setlocal textwidth=90
