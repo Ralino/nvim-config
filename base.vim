@@ -212,10 +212,7 @@ noremap gB :bprevious<CR>
 noremap <silent> Q q:
 
 " Better QWERTZ support
-map <silent> ö [
-map <silent> ä ]
-map <silent> Ö {
-map <silent> Ä }
+set langmap=ö[,ä],Ö{,Ä}
 map <silent> ü <c-]>
 
 " clear last search pattern, empty pattern for some reason is replaced by a different
