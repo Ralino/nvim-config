@@ -192,8 +192,20 @@ function! s:quickTerminal(cmd)
     startinsert
   endif
 endfunction
-
 command! -nargs=* -complete=shellcmd QuickTerm call <SID>quickTerminal(<q-args>)
+
+" bufferize vim output
+function! s:bufferize(cmd)
+  let tmpfile = tempname() . '_vim'
+  execute 'redir > ' . tmpfile
+  execute 'silent ' . a:cmd
+  redir END
+  execute 'split ' . tmpfile
+endfunction
+command! -nargs=* -complete=command Bufferize call <SID>bufferize(<q-args>)
+command! Messages call <SID>bufferize('messages') | silent g/^$/d | silent write | normal G
+
+
 " }}}
 
 " Mappings {{{
