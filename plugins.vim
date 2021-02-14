@@ -77,10 +77,13 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'vim-airline/vim-airline'
 
-if !has("win32")
-  Plug 'vimwiki/vimwiki'
+if executable('ctags')
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle', 'TagbarOpen'] }
+endif
+
+if !has("win32")
+  Plug 'vimwiki/vimwiki'
   Plug 'lervag/vimtex'
 endif
 
