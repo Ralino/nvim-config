@@ -183,6 +183,7 @@ endfunction
 
 if has("win32")
   let g:fzf_preview_window = []
+  let g:fzf_layout = { 'window': { 'width': 130, 'height': 35 } }
 endif
 
 endif
@@ -291,7 +292,7 @@ let g:airline_left_sep = ' '
 let g:airline_right_alt_sep = '|'
 let g:airline_right_sep = ' '
 let g:airline_symbols.maxlinenr = ''
-set ttimeoutlen=10
+"set ttimeoutlen=10 "FIXME why is this here, and why in general?
 
 endif
 " }}}
@@ -307,6 +308,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 nmap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> <c-tab> :call CocAction('runCommand', 'clangd.switchSourceHeader')<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

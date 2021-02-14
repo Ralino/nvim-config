@@ -1,10 +1,10 @@
 {
   "coc.preferences.extensionUpdateCheck": "never",
 
-  "diagnostic.errorSign": " ",
-  "diagnostic.warningSign": " ",
-  "diagnostic.infoSign": "ℹ ",
-  "diagnostic.hintSign": " ",
+  "diagnostic.errorSign": "X ",
+  "diagnostic.warningSign": "! ",
+  "diagnostic.infoSign": "i ",
+  "diagnostic.hintSign": "? ",
 
   "list.insertMappings": {
     "<C-j>": "normal:j",

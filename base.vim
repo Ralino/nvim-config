@@ -51,7 +51,7 @@ set tabstop=4
 
 set wrap
 set scrolloff=2
-set sidescrolloff=5
+set sidescrolloff=0
 set sidescroll=1
 set listchars=extends:►,precedes:◄
 inoremap <C-A> <C-O>ze
