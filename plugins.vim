@@ -69,15 +69,18 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
-Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle', 'TagbarOpen'] }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'lervag/vimtex'
 Plug 'vim-airline/vim-airline'
+
+if !has("win32")
+  Plug 'vimwiki/vimwiki'
+  Plug 'ludovicchabant/vim-gutentags'
+  Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle', 'TagbarOpen'] }
+  Plug 'lervag/vimtex'
+endif
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
