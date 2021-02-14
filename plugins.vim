@@ -32,6 +32,8 @@ function! s:getItem(list, id, ...)
   return v:false
 endfunction
 
+let main_runtime_dir = split(&runtimepath, ',')[0]
+
 "}}}
 
 " polyglot {{{
@@ -49,13 +51,13 @@ let g:polyglot_disabled = [
 " Plugins {{{
 
 "Install vim-plug if not already installed
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob(main_runtime_dir . '/autoload/plug.vim'))
+  execute 'silent !curl -fLo ' . main_runtime_dir . '/autoload/plug.vim --create-dirs '
+    \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(main_runtime_dir . '/plugged')
 
 Plug 'junegunn/vim-plug'
 Plug 'tpope/vim-surround'
@@ -152,8 +154,8 @@ endif
 " surround {{{
 if s:hasPlugin('vim-surround')
 
-nmap s ys
-xmap s S
+nnoremap s ys
+xnoremap s S
 
 endif
 " }}}
@@ -214,7 +216,8 @@ endif
 if s:hasPlugin('vim-gitgutter')
 
 set signcolumn=yes
-set updatetime=500
+set updatetime=100
+let g:gitgutter_max_signs=2000
 
 endif
 " }}}
@@ -222,7 +225,12 @@ endif
 " gutentags {{{
 if s:hasPlugin('vim-gutentags')
 
-let g:gutentags_cache_dir="~/.cache/tagfiles"
+if has("nvim")
+  let g:gutentags_cache_dir=stdpath('cache') . "/gutentags"
+else
+  let g:gutentags_cache_dir="~/.cache/gutentags"
+endif
+
 let g:gutentags_define_advanced_commands=1
 
 endif
@@ -311,7 +319,6 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 nmap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent> <c-tab> :call CocAction('runCommand', 'clangd.switchSourceHeader')<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -351,9 +358,13 @@ snoremap <silent> <BS> <c-g>c
 snoremap <silent> <DEL> <c-g>c
 snoremap <c-r> <c-g>"_c<c-r>
 
+
 augroup COC
   autocmd!
   autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
+  "clangd mappings
+  au FileType cpp nnoremap <silent> <c-tab> :call CocAction('runCommand', 'clangd.switchSourceHeader')<CR>
 endif
 " }}}

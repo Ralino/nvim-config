@@ -1,2 +1,4 @@
 wip.vim
 /.netrwhist
+autoload
+plugged

@@ -5,8 +5,10 @@
 " Settings {{{
 set nocompatible
 
-"FIXME consider using $XDG_CONFIG_HOME/nvim
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
+if !has("nvim")
+  "$XDG_CONFIG_HOME/nvim for nvim (default)
+  set runtimepath^=~/.vim runtimepath+=~/.vim/after
+endif
 
 filetype plugin indent on
 syntax on
@@ -32,10 +34,12 @@ set vb
 set t_vb=
 
 set undofile
-set undodir^=~/.vim/tmp
 set backupskip+=/dev/shm/*
-"swap files
-set dir^=~/.vim/swap,~/.vim/tmp
+if !has("nvim")
+  "swap files
+  set dir^=~/.vim/swap,~/.vim/tmp
+  set undodir^=~/.vim/tmp
+endif
 augroup UNDOFILE
   au!
   au BufWritePre /tmp/* setlocal noundofile
@@ -54,7 +58,6 @@ set scrolloff=2
 set sidescrolloff=0
 set sidescroll=1
 set listchars=extends:►,precedes:◄
-inoremap <C-A> <C-O>ze
 
 set wildmenu
 set wildmode=longest:full,full
