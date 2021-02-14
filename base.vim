@@ -205,6 +205,11 @@ tnoremap <C-S> <C-\><C-N><C-W>
 
 tnoremap <C-N> <C-\><C-N>
 
+"use default clipboard mappings in visual and insert mode
+nnoremap <C-C> "+yiw
+xnoremap <C-C> "+ygv
+inoremap <C-V> <C-O>"+p
+
 "Quick terminal
 noremap <silent> <C-Q> :QuickTerm<CR>
 tnoremap <silent> <C-Q> <C-\><C-N><C-W>p
