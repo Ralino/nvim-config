@@ -68,6 +68,9 @@ let maplocalleader = " "
 
 set guioptions-=m guioptions-=T guioptions-=L
 
+" scrollback for terminal. prevent linenumbers > 9999
+set scrollback=9900
+
 augroup JUMPTOLASTCURSORPOS
   au!
   autocmd BufReadPost *

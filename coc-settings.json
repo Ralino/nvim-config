@@ -63,5 +63,7 @@
   },
   "signature.preferShownAbove": false,
   "diagnostic.checkCurrentLine": true,
-  "suggest.preferCompleteThanJumpPlaceholder": true
+  "suggest.preferCompleteThanJumpPlaceholder": true,
+
+  "clangd.fallbackFlags": ["-std=c++17"]
 }
