@@ -64,7 +64,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'bkad/CamelCaseMotion'
 
-if !filereadable('/usr/share/vim/vimfiles/plugin/fzf.vim')
+if !executable('fzf')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install()} }
 endif
 Plug 'junegunn/fzf.vim'
