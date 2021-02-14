@@ -77,15 +77,37 @@ augroup JUMPTOLASTCURSORPOS
 augroup END
 
 if has("win32")
-  let &shell='powershell'
-  let &shellcmdflag='-NoProfile -c'
-  let &shellquote='"'
-  let &shellxquote=''
+  set guifont=Consolas:h10
 endif
 
 " }}}
 
 " Commands {{{
+
+if has("win32")
+  function! s:toggleShell(shell)
+    if empty(a:shell) && &shell == 'powershell'
+      " switch to default (cmd.exe)
+      let &shell='cmd.exe'
+      let &shellcmdflag='/s /c'
+      let &shellquote=''
+      let &shellxquote='"'
+    else
+      " switch to powershell
+      let &shell='powershell'
+      let &shellcmdflag='-NoProfile -c'
+      let &shellquote='"'
+      let &shellxquote=''
+    endif
+    echo "Using " . &shell . " as shell"
+  endfunction
+
+  command! SwitchShell call <SID>toggleShell('')
+  "switch to powershell on startup
+  "call <SID>toggleShell('powershell')
+
+  command! Terminal :terminal powershell
+endif
 
 "I am bad at typing
 command! W :w
@@ -141,7 +163,7 @@ function! s:quickTerminal(cmd)
     let g:quick_term_win = win_getid()
     if empty(cmd)
       if has("win32")
-        let cmd = &shell
+        let cmd = 'powershell'
       else
         let cmd = &shell . " -i"
       endif
