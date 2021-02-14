@@ -178,17 +178,24 @@ command! -nargs=* Rg FzfRg <args>
 
 function! s:fzfFromItemList(list)
   let ids = []
+  let longest_item = 1
   for item in a:list
     if item.req()
       call add(ids, item.id)
+      if (strlen(item.id) > longest_item)
+        let longest_item = strlen(item.id)
+      endif
     endif
   endfor
-  call fzf#run(fzf#wrap({'source': ids, 'sink': {id -> s:getItem(a:list, id).cmd()}}))
+  let window_dict = { 'width': min([longest_item + 8, 130]), 'height': min([len(ids) + 4, 35]) }
+  call fzf#run(fzf#wrap({'window': window_dict, 'source': ids, 'sink': {id -> s:getItem(a:list, id).cmd()}}))
 endfunction
 
 if has("win32")
   let g:fzf_preview_window = []
   let g:fzf_layout = { 'window': { 'width': 130, 'height': 35 } }
+else
+  let g:fzf_layout = { 'window': { 'width': 200, 'height': 35 } }
 endif
 
 endif
