@@ -17,6 +17,8 @@ set title
 set ruler
 set showcmd
 set incsearch
+set smartcase
+set ignorecase
 set nolangremap
 set autoindent
 set backspace=indent,eol,start
@@ -24,7 +26,6 @@ set mouse=a
 set number
 set relativenumber
 set hidden
-set tildeop
 if has("nvim")
   set inccommand=split
 endif
@@ -47,6 +48,12 @@ augroup UNDOFILE
   au BufWritePre /tmp/* setlocal noswapfile
   au BufWritePre /dev/shm/* setlocal noswapfile
 augroup END
+
+if has("win32")
+  "FIXME somehow vim on windows sometimes creates files which it does not have
+  "permission to write to
+  set nowritebackup
+endif
 
 set shiftwidth=2
 set expandtab
@@ -88,7 +95,7 @@ augroup JUMPTOLASTCURSORPOS
 augroup END
 
 if has("win32")
-  set guifont=Consolas:h10
+  set guifont=Consolas:h12
 endif
 
 " }}}

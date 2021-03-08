@@ -66,6 +66,8 @@ Plug 'bkad/CamelCaseMotion'
 
 if !executable('fzf')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install()} }
+else
+  Plug 'junegunn/fzf'
 endif
 Plug 'junegunn/fzf.vim'
 
@@ -226,7 +228,7 @@ endif
 if s:hasPlugin('vim-gitgutter')
 
 set signcolumn=yes
-set updatetime=100
+set updatetime=400
 let g:gitgutter_max_signs=2000
 
 endif
@@ -368,6 +370,7 @@ snoremap <silent> <BS> <c-g>c
 snoremap <silent> <DEL> <c-g>c
 snoremap <c-r> <c-g>"_c<c-r>
 
+nnoremap <silent> <leader>c :CocListResume<CR>
 
 augroup COC
   autocmd!
