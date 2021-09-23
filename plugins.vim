@@ -46,6 +46,8 @@ let g:polyglot_disabled = [
   \ 'latex'
   \]
 
+let g:vue_pre_processors = 'detect_on_enter'
+
 " }}}
 
 " Plugins {{{
