@@ -344,7 +344,6 @@ if s:hasPlugin('fzf.vim')
   let g:custom_action_list = [
    \ { 'id': 'quickfix', 'req': {-> !empty(CocAction('quickfixes'))}, 'cmd': {-> CocAction('doQuickfix') } },
    \ { 'id': 'switch header/source', 'req': {-> s:hasItem(CocAction('commands'), 'clangd.switchSourceHeader')}, 'cmd': {-> CocAction('runCommand', 'clangd.switchSourceHeader')}},
-   \ { 'id': 'rename symbol', 'req': {-> CocHasProvider('rename')}, 'cmd': {-> CocAction('rename') } },
    \ { 'id': 'open link', 'req': {-> CocHasProvider('documentLink')},'cmd': {-> CocAction('openLink') } },
    \ { 'id': 'go to reference', 'req': {-> CocHasProvider('reference')}, 'cmd': {-> CocAction('jumpReferences') } },
    \ { 'id': 'go to declaration', 'req': {-> CocHasProvider('declaration')}, 'cmd': {-> CocAction('jumpDeclaration') } },

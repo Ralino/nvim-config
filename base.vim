@@ -96,6 +96,8 @@ augroup END
 
 if has("win32")
   set guifont=Consolas:h12
+  " BOMs are weird, strip it from fileencodings
+  set fileencodings=utf-8,default,latin1
 endif
 
 " }}}
@@ -227,7 +229,7 @@ tnoremap <C-N> <C-\><C-N>
 "use default clipboard mappings in visual and insert mode
 nnoremap <C-C> "+yiw
 xnoremap <C-C> "+ygv
-inoremap <C-V> <C-O>"+p
+inoremap <C-V> <C-O>"+P
 
 "Quick terminal
 noremap <silent> <C-Q> :QuickTerm<CR>
@@ -266,24 +268,24 @@ augroup FILETYPE_CONF
   " ROS launch files
   au BufNewFile,BufRead,BufEnter *.launch setf xml
   au BufNewFile,BufRead,BufEnter *.test setf xml
-  "the fuck vim?
+  " the fuck vim?
   au BufNewFile,BufRead,BufEnter *.tex setf tex
-  "octave
+  " octave
   au BufNewFile,BufRead,BufEnter *.m setf octave
 
   " Makefiles require tabs
   au FileType make setlocal noexpandtab
   " Yamls default autoindent sucks
   au FileType yaml setlocal indentkeys-=0# indentkeys-=<:>
-  "Latex
+  " Latex
   au FileType tex setlocal spell
   au FileType tex setlocal textwidth=90
-  "Vimwiki
+  " vimwiki
   au FileType vimwiki setlocal nowrap
   au FileType vimwiki setlocal textwidth=90
-  "Comments in json
-  au BufNewFile,BufRead,BufEnter *.json setf jsonc | set syntax=json | syntax match Comment +\/\/.*$+
-  "textwidth in plain text files
+  " Comments in json
+  au BufNewFile,BufRead,BufEnter *.json,.eslintrc setf jsonc | set syntax=json | syntax match Comment +\/\/.*$+
+  " textwidth in plain text files
   au FileType text setlocal textwidth=90
   au FileType markdown setlocal textwidth=90
 augroup END
