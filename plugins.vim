@@ -73,6 +73,8 @@ else
 endif
 Plug 'junegunn/fzf.vim'
 
+Plug 'jesseleite/vim-agriculture'
+
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
@@ -180,8 +182,10 @@ let g:fzf_command_prefix = 'Fzf'
 nnoremap <silent> <C-F> :FzfFiles<CR>
 nnoremap <silent> <C-B> :FzfBuffers<CR>
 nnoremap <silent><expr> <C-G> empty(tagfiles())? ":FzfBTags\<CR>" : ":FzfTags\<CR>"
-command! -nargs=* Files FzfFiles <args>
+command! -nargs=* -complete=dir Files FzfFiles <args>
 command! -nargs=* Rg FzfRg <args>
+
+nnoremap <leader>f :Files<space>
 
 function! s:fzfFromItemList(list)
   let ids = []
@@ -204,6 +208,16 @@ if has("win32")
 else
   let g:fzf_layout = { 'window': { 'width': 200, 'height': 35 } }
 endif
+
+endif
+" }}}
+
+" agriculture {{{
+if s:hasPlugin('vim-agriculture')
+
+nmap <leader>/ <Plug>RgRawSearch
+vmap <leader>/ y:let @" = shellescape(getreg('"'))<CR>:RgRaw -F -- <C-R>"
+nmap <leader>/ yiw:let @" = shellescape(getreg('"'))<CR>:RgRaw -w -F -- <C-R>"
 
 endif
 " }}}

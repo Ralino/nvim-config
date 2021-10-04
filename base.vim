@@ -148,7 +148,7 @@ else
           \ }
     noautocmd call nvim_open_win(buf, v:true, window_opts)
     call termopen(a:cmd)
-    normal i
+    startinsert
   endfunction
 
   function! s:nvimSudoW()
