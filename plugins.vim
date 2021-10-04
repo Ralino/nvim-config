@@ -217,7 +217,7 @@ if s:hasPlugin('vim-agriculture')
 
 nmap <leader>/ <Plug>RgRawSearch
 vmap <leader>/ y:let @" = shellescape(getreg('"'))<CR>:RgRaw -F -- <C-R>"
-nmap <leader>/ yiw:let @" = shellescape(getreg('"'))<CR>:RgRaw -w -F -- <C-R>"
+nmap <leader>* yiw:let @" = shellescape(getreg('"'))<CR>:RgRaw -w -F -- <C-R>"
 
 endif
 " }}}
