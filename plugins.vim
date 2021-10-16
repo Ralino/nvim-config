@@ -294,13 +294,6 @@ endfunction()
 
 let g:tex_flavor = 'latex'
 let g:vimtex_complete_bib = {'simple': 1}
-let g:vimtex_quickfix_latexlog = {
-      \ 'overfull' : 0,
-      \ 'underfull' : 0,
-      \ 'packages' : {
-      \   'default' : 0,
-      \ },
-      \}
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_quickfix_autoclose_after_keystrokes = 5
 let g:vimtex_view_general_viewer = 'okular'
