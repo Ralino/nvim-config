@@ -272,6 +272,8 @@ augroup FILETYPE_CONF
   au BufNewFile,BufRead,BufEnter *.tex setf tex
   " octave
   au BufNewFile,BufRead,BufEnter *.m setf octave
+  " Qt resource files
+  au BufNewFile,BufRead,BufEnter *.qrc setf xml
 
   " Makefiles require tabs
   au FileType make setlocal noexpandtab
