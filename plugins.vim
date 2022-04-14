@@ -380,6 +380,10 @@ snoremap <c-r> <c-g>"_c<c-r>
 
 nnoremap <silent> <leader>c :CocListResume<CR>
 
+" cannot call rename feature from fzfs list window
+nnoremap <F2> <Plug>(coc-rename)
+nnoremap <leader>r <Plug>(coc-rename)
+
 augroup COC
   autocmd!
   autocmd CursorHold * silent call CocActionAsync('highlight')
