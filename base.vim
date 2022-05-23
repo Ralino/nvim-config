@@ -18,7 +18,7 @@ set ruler
 set showcmd
 set incsearch
 set smartcase
-set ignorecase
+"set ignorecase
 set nolangremap
 set autoindent
 set backspace=indent,eol,start
@@ -264,7 +264,7 @@ augroup FILETYPE_CONF
   autocmd!
 
   " OpenGL syntax settings
-  au BufNewFile,BufRead,BufEnter *.frag,*.vert,*.fp,*.glsl,*.vsh,*.fsh setf glsl
+  au BufNewFile,BufRead,BufEnter *.frag,*.vert,*.fp,*.glsl,*.vsh,*.fsh,*.comp setf glsl
   " ROS launch files
   au BufNewFile,BufRead,BufEnter *.launch setf xml
   au BufNewFile,BufRead,BufEnter *.test setf xml

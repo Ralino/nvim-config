@@ -393,3 +393,16 @@ augroup COC
   au FileType cpp nnoremap <silent> <c-tab> :call CocAction('runCommand', 'clangd.switchSourceHeader')<CR>
 endif
 " }}}
+
+" termdebug {{{ 
+if has("nvim")
+
+packadd termdebug
+
+nnoremap <F5> :Continue<CR>
+nnoremap <F6> :Step<CR>
+nnoremap <F7> :Over<CR>
+nnoremap <F8> :Finish<CR>
+
+endif
+" }}}
