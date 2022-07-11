@@ -24,5 +24,6 @@
   "suggest.preferCompleteThanJumpPlaceholder": true,
 
   "clangd.fallbackFlags": ["-std=c++17"],
+  "clangd.inlayHints.enable": false,
   "coc.preferences.formatOnType": false
 }

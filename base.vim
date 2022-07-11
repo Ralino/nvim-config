@@ -18,7 +18,8 @@ set ruler
 set showcmd
 set incsearch
 set smartcase
-"set ignorecase
+" hint: use \C anywhere in a search term to force case sensitivity
+set ignorecase
 set nolangremap
 set autoindent
 set backspace=indent,eol,start
