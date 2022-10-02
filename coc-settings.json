@@ -1,10 +1,22 @@
 {
   "coc.preferences.extensionUpdateCheck": "never",
+  
+  "suggest.floatConfig": {
+    "highlight": "Pmenu"
+  },
+  "floatFactory.floatConfig": {
+    "highlight": "NormalFloat"
+  },
+
+  "suggest.virtualText": true,
 
   "diagnostic.errorSign": "X ",
   "diagnostic.warningSign": "! ",
   "diagnostic.infoSign": "i ",
   "diagnostic.hintSign": "? ",
+
+  "codeLens.enable": true,
+  "codeLens.position": "top",
 
   "list.insertMappings": {
     "<C-j>": "normal:j",

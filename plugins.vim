@@ -348,6 +348,14 @@ function! s:show_documentation()
   endif
 endfunction
 
+" completion menu mappings for cocs popup menu
+inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(0) : "\<Tab>"
+inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(0) : "\<S-Tab>"
+inoremap <silent><expr> <C-J> coc#pum#visible() ? coc#pum#next(1) : "\<C-J>"
+inoremap <silent><expr> <C-K> coc#pum#visible() ? coc#pum#prev(1) : "\<C-K>"
+inoremap <silent><expr> <C-L> coc#pum#visible() ? coc#pum#confirm() : "\<C-L>"
+highlight! link CocMenuSel PMenuSel
+
 if s:hasPlugin('fzf.vim')
   let g:custom_action_list = [
    \ { 'id': 'quickfix', 'req': {-> !empty(CocAction('quickfixes'))}, 'cmd': {-> CocAction('doQuickfix') } },
