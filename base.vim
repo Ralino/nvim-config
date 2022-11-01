@@ -215,7 +215,6 @@ endfunction
 command! -nargs=* -complete=command Bufferize call <SID>bufferize(<q-args>)
 command! Messages call <SID>bufferize('messages') | silent g/^$/d | silent write | normal G
 
-
 " }}}
 
 " Mappings {{{
@@ -282,14 +281,28 @@ augroup FILETYPE_CONF
   au FileType yaml setlocal indentkeys-=0# indentkeys-=<:>
   " Latex
   au FileType tex setlocal spell
-  au FileType tex setlocal textwidth=90
+  au FileType tex setlocal textwidth=80
   " vimwiki
   au FileType vimwiki setlocal nowrap
-  au FileType vimwiki setlocal textwidth=90
+  au FileType vimwiki setlocal textwidth=80
   " Comments in json
   au BufNewFile,BufRead,BufEnter *.json,.eslintrc setf jsonc | set syntax=json | syntax match Comment +\/\/.*$+
   " textwidth in plain text files
-  au FileType text setlocal textwidth=90
-  au FileType markdown setlocal textwidth=90
+  au FileType text setlocal textwidth=80
+  au FileType markdown setlocal textwidth=80
 augroup END
+
+function! MarkdownLevel()
+  let h = matchstr(getline(v:lnum), '^#\+')
+  if empty(h)
+    return "="
+  else
+    return ">" . len(h)
+  endif
+endfunction
+augroup MARKDOWN_FOLDING
+  au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
+  au BufEnter *.md setlocal foldmethod=expr
+augroup END
+
 " }}}

@@ -37,5 +37,8 @@
 
   "clangd.fallbackFlags": ["-std=c++17"],
   "clangd.inlayHints.enable": false,
-  "coc.preferences.formatOnType": false
+  "coc.preferences.formatOnType": false,
+
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length", "79"]
 }
