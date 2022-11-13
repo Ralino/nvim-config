@@ -83,7 +83,6 @@ set scrollback=10000
 augroup TERMSETTINGS
   autocmd!
   autocmd TermOpen * setlocal scrolloff=0
-  autocmd TermOpen * setlocal sidescroll=0
   autocmd TermOpen * setlocal nonumber
 augroup END
 

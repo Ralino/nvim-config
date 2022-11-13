@@ -180,6 +180,7 @@ endif
 if s:hasPlugin('fzf.vim')
 
 let g:fzf_command_prefix = 'Fzf'
+let g:fzf_files_options = $FZF_CTRL_T_OPTS
 nnoremap <silent> <C-F> :FzfFiles<CR>
 nnoremap <silent> <C-B> :FzfBuffers<CR>
 nnoremap <silent><expr> <C-G> empty(tagfiles())? ":FzfBTags\<CR>" : ":FzfTags\<CR>"
@@ -187,6 +188,20 @@ command! -nargs=* -complete=dir Files FzfFiles <args>
 command! -nargs=* Rg FzfRg <args>
 
 nnoremap <leader>f :Files<space>
+
+function! s:gfWithFallback()
+  let previous_fzf_cmd = $FZF_DEFAULT_COMMAND
+  try
+    normal! gf
+  catch /^Vim\%((\a\+)\)\=:E447:/
+    let $FZF_DEFAULT_COMMAND = 'fd --hidden --follow --full-path ' . shellescape(expand('<cfile>')) . ' 2> /dev/null'
+    "FIXME works, but is not really nice
+    FzfFiles
+  finally
+    let $FZF_DEFAULT_COMMAND = previous_fzf_cmd
+  endtry
+endfunction
+nnoremap gf :call <SID>gfWithFallback()<CR>
 
 function! s:fzfFromItemList(list)
   let ids = []
@@ -217,8 +232,8 @@ endif
 if s:hasPlugin('vim-agriculture')
 
 nmap <leader>/ <Plug>RgRawSearch
-vmap <leader>* y:let @" = shellescape(getreg('"'))<CR>:RgRaw -F -- <C-R>"
-nmap <leader>* yiw:let @" = shellescape(getreg('"'))<CR>:RgRaw -w -F -- <C-R>"
+vmap <leader>* y:let @" = shellescape(getreg('"'))<CR>:RgRaw -F -- <C-R>"<C-b><C-Right><C-Right>
+nmap <leader>* yiw:let @" = shellescape(getreg('"'))<CR>:RgRaw -w -F -- <C-R>"<C-b><C-Right><C-Right><C-Right>
 
 endif
 " }}}
@@ -323,8 +338,9 @@ let g:airline_left_alt_sep = '|'
 let g:airline_left_sep = ' '
 let g:airline_right_alt_sep = '|'
 let g:airline_right_sep = ' '
+let g:airline_section_z = '%#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%v%#__restore__#'
+let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
-"set ttimeoutlen=10 "FIXME why is this here, and why in general?
 
 endif
 " }}}
@@ -338,16 +354,24 @@ inoremap <silent><expr> <c-space> coc#refresh()
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-nmap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:gdWithFallback()
+  if CocHasProvider('definition')
+    call CocAction('jumpDefinition')
+  else
+    normal! gd
+  endif
+endfunction
 
-function! s:show_documentation()
+function! s:showDocumentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
     call CocAction('doHover')
   endif
 endfunction
+
+nnoremap <silent> gd :call <SID>gdWithFallback()<CR>
+nnoremap <silent> K :call <SID>showDocumentation()<CR>
 
 " completion menu mappings for cocs popup menu
 inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(0) : "\<Tab>"
@@ -378,6 +402,9 @@ if s:hasPlugin('fzf.vim')
   map <leader>l :call <SID>fzfFromItemList(g:custom_action_list)<CR>
 endif
 
+" inlay hints
+hi CocInlayHint guifg=#83a598 guibg=NONE gui=italic
+
 let g:coc_snippet_next = '<C-n>'
 let g:coc_snippet_prev = '<C-p>'
 "c-h is in conflict with auto mapping, add other mappings though:
@@ -402,7 +429,7 @@ augroup COC
 endif
 " }}}
 
-" termdebug {{{ 
+" termdebug {{{
 if has("nvim")
 
 packadd termdebug
