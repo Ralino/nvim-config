@@ -72,7 +72,9 @@ set wildmode=longest:full,full
 
 set foldmethod=marker
 
+" use z= to choose a suggested fix
 set spelllang=de,en_us
+set spellsuggest=fast
 
 let mapleader = " "
 let maplocalleader = " "
@@ -280,7 +282,7 @@ augroup FILETYPE_CONF
   au FileType yaml setlocal indentkeys-=0# indentkeys-=<:>
   " Latex
   au FileType tex setlocal spell
-  au FileType tex setlocal textwidth=80
+  au FileType tex setlocal textwidth=90
   " vimwiki
   au FileType vimwiki setlocal nowrap
   au FileType vimwiki setlocal textwidth=80
