@@ -400,6 +400,7 @@ if s:hasPlugin('fzf.vim')
    \]
 
   map <leader>l :call <SID>fzfFromItemList(g:custom_action_list)<CR>
+  sunmap <leader>l
 endif
 
 " inlay hints

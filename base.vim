@@ -242,14 +242,17 @@ noremap gB :bprevious<CR>
 
 "Do not use Ex-mode, open command-line window instead
 noremap <silent> Q q:
+sunmap Q
 
 " Better QWERTZ support
 set langmap=ö[,ä],Ö{,Ä}
 map <silent> ü <c-]>
+sunmap ü
 
 " clear last search pattern, empty pattern for some reason is replaced by a different
 " pattern in newer nvim and vim versions
 map <silent> <leader>x :let @/ = "\\_$ cleared search"<CR>
+sunmap <leader>x
 
 " completion menu mappings
 inoremap <silent><expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
