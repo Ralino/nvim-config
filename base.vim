@@ -307,6 +307,7 @@ endfunction
 augroup MARKDOWN_FOLDING
   au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
   au BufEnter *.md setlocal foldmethod=expr
+  au BufRead,BufNewFile *.md setlocal foldlevel=999
 augroup END
 
 " }}}

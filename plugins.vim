@@ -318,6 +318,7 @@ let g:vimtex_format_enabled = 1
 "Note: To perform a backward (or inverse) search in Okular, you do 'shift + click'.
 "If latexmk fails to compile, try running `latexmk -pdf <file>` once
 let g:vimtex_imaps_leader = 'jj'
+
 augroup VIMTEX
   au!
   au  FileType tex call s:startRemoteServer()
