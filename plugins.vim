@@ -63,6 +63,7 @@ call plug#begin(main_runtime_dir . '/plugged')
 
 Plug 'junegunn/vim-plug'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'bkad/CamelCaseMotion'
 
