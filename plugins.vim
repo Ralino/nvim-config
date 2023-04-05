@@ -3,7 +3,7 @@
 " Helper functions {{{
 
 function! s:hasPlugin(name)
-  return has_key(g:plugs, a:name)
+  return has_key(g:plugs, a:name) && isdirectory(g:plugs[a:name].dir)
 endfunction
 
 function! s:hasItem(list, id, ...)
@@ -64,8 +64,12 @@ call plug#begin(main_runtime_dir . '/plugged')
 Plug 'junegunn/vim-plug'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'bkad/CamelCaseMotion'
+if has('nvim-0.7')
+  Plug 'ggandor/leap.nvim'
+endif
 
 if !executable('fzf')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install()} }
@@ -165,7 +169,7 @@ endif
 " surround {{{
 if s:hasPlugin('vim-surround')
 
-nnoremap s ys
+"nnoremap s ys
 xnoremap s S
 
 endif
@@ -174,6 +178,16 @@ endif
 " CamelCaseMotion {{{
 if s:hasPlugin('CamelCaseMotion')
 let g:camelcasemotion_key = '<leader>'
+endif
+" }}}
+
+" leap {{{
+if s:hasPlugin('leap.nvim')
+
+lua require('leap').add_default_mappings()
+lua require('leap').opts.safe_labels = { "s", "f", "n", "u", "t",
+  "S", "F", "N", "L", "H", "M", "U", "G", "T", "Z" }
+
 endif
 " }}}
 
