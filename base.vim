@@ -288,12 +288,12 @@ augroup FILETYPE_CONF
   au FileType tex setlocal textwidth=90
   " vimwiki
   au FileType vimwiki setlocal nowrap
-  au FileType vimwiki setlocal textwidth=80
+  au FileType vimwiki setlocal textwidth=100
   " Comments in json
   au BufNewFile,BufRead,BufEnter *.json,.eslintrc setf jsonc | set syntax=json | syntax match Comment +\/\/.*$+
   " textwidth in plain text files
-  au FileType text setlocal textwidth=80
-  au FileType markdown setlocal textwidth=80
+  au FileType text setlocal textwidth=100
+  au FileType markdown setlocal textwidth=100
 augroup END
 
 function! MarkdownLevel()
