@@ -186,7 +186,7 @@ if s:hasPlugin('leap.nvim')
 
 lua require('leap').add_default_mappings()
 lua require('leap').opts.safe_labels = { "s", "f", "n", "u", "t",
-  "S", "F", "N", "L", "H", "M", "U", "G", "T", "Z" }
+      \ "S", "F", "N", "L", "H", "M", "U", "G", "T", "Z" }
 
 endif
 " }}}
