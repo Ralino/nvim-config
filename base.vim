@@ -229,7 +229,7 @@ tnoremap <C-N> <C-\><C-N>
 
 "use default clipboard mappings in visual and insert mode
 nnoremap <C-C> "+yiw
-xnoremap <C-C> "+ygv
+xnoremap <C-C> "+y
 inoremap <C-V> <C-O>"+P
 
 "Quick terminal
@@ -253,6 +253,9 @@ sunmap ü
 " pattern in newer nvim and vim versions
 map <silent> <leader>x :let @/ = "\\_$ cleared search"<CR>
 sunmap <leader>x
+
+" paste without overwriting register
+xnoremap <leader>p "_dP
 
 " completion menu mappings
 inoremap <silent><expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"

@@ -436,6 +436,8 @@ nnoremap <silent> <leader>c :CocListResume<CR>
 nnoremap <F2> <Plug>(coc-rename)
 nnoremap <leader>r <Plug>(coc-rename)
 
+xnoremap <leader>f <Plug>(coc-format-selected)
+
 augroup COC
   autocmd!
   autocmd CursorHold * silent call CocActionAsync('highlight')
