@@ -35,6 +35,7 @@
   "suggest.preferCompleteThanJumpPlaceholder": true,
 
   "clangd.fallbackFlags": ["-std=c++17"],
+  "clangd.arguments": ["--header-insertion=never"],
   "coc.preferences.formatOnType": false,
 
   "python.formatting.provider": "black",

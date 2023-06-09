@@ -268,6 +268,11 @@ if s:hasPlugin('vim-fugitive')
 command! Gtree exe 'split | terminal' FugitivePrepare(['log', '--oneline', '--decorate', '--graph', '--all'])
 command! GTree  Gtree
 
+"Your arbitrary deprecations have no power over me
+command! Grename GRename
+command! Gremove GRemove
+command! Gmove GMove
+
 endif
 " }}}
 

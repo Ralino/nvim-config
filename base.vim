@@ -240,6 +240,10 @@ tnoremap <silent> <C-Q> <C-\><C-N><C-W>p
 noremap gb :bnext<CR>
 noremap gB :bprevious<CR>
 
+"quick quickfix
+nnoremap <leader>n :cnext<CR>
+nnoremap <leader>N :cprev<CR>
+
 "Do not use Ex-mode, open command-line window instead
 noremap <silent> Q q:
 sunmap Q
