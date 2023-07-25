@@ -68,35 +68,21 @@ Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'bkad/CamelCaseMotion'
 
-if !executable('fzf')
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install()} }
-else
-  Plug 'junegunn/fzf'
-endif
-Plug 'junegunn/fzf.vim'
-
-Plug 'jesseleite/vim-agriculture'
-
-Plug 'morhetz/gruvbox'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-"FIXME potentially breaks fugitive: https://github.com/tpope/vim-fugitive/issues/1624
-"Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'vim-airline/vim-airline'
-
-if executable('ctags')
-  " Plug 'ludovicchabant/vim-gutentags' FIXME check performance issues
-  Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle', 'TagbarOpen'] }
-endif
+Plug 'tpope/vim-fugitive'
 
 if !has("win32")
-  Plug 'vimwiki/vimwiki'
   Plug 'lervag/vimtex'
 endif
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" lua plugins
+
+Plug 'nvim-lua/plenary.nvim'
+
+Plug 'ellisonleao/gruvbox.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
 
 call plug#end()
 
