@@ -361,6 +361,8 @@ set shortmess+=c
 inoremap <silent><expr> <c-space> coc#refresh()
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [e <Plug>(coc-diagnostic-prev-error)
+nmap <silent> ]e <Plug>(coc-diagnostic-next-error)
 
 function! s:gdWithFallback()
   if CocHasProvider('definition')
@@ -400,12 +402,12 @@ if s:hasPlugin('fzf.vim')
    \ { 'id': 'go to type definition', 'req': {-> CocHasProvider('typeDefinition')}, 'cmd': {-> CocAction('jumpTypeDefinition') } },
    \ { 'id': 'go to definition', 'req': {-> CocHasProvider('definition')}, 'cmd': {-> CocAction('jumpDefinition') } },
    \ { 'id': 'format buffer', 'req': {-> CocHasProvider('format')}, 'cmd': {-> CocAction('format') } },
-   \ { 'id': 'fold buffer', 'req': {-> CocHasProvider('foldingRange')}, 'cmd': {-> CocAction('fold') } },
    \ { 'id': 'list diagnostics', 'req': {-> !empty(CocAction('diagnosticList'))}, 'cmd': {-> execute("CocList diagnostics")} },
    \ { 'id': 'disable diagnostics', 'req': {-> !exists("b:coc_diagnostic_disable")}, 'cmd': {-> execute("let b:coc_diagnostic_disable=1 | CocRestart")} },
    \ { 'id': 'enable diagnostics', 'req': {-> exists("b:coc_diagnostic_disable")}, 'cmd': {-> execute("unlet b:coc_diagnostic_disable | CocRestart")} },
    \ { 'id': 'restart coc', 'req': {-> v:true}, 'cmd': {-> execute("CocRestart")} },
    \]
+   "\ { 'id': 'fold buffer', 'req': {-> CocHasProvider('foldingRange')}, 'cmd': {-> CocAction('fold') } },
 
   map <leader>l :call <SID>fzfFromItemList(g:custom_action_list)<CR>
   sunmap <leader>l

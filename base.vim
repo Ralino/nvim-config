@@ -259,6 +259,13 @@ sunmap Q
 set langmap=ö[,ä],Ö{,Ä}
 map <silent> ü <c-]>
 sunmap ü
+"otherwise does not work with custom mappings
+nmap ö [
+nmap ä ]
+omap ö [
+omap ä ]
+xmap ö [
+xmap ä ]
 
 " clear last search pattern, empty pattern for some reason is replaced by a different
 " pattern in newer nvim and vim versions
@@ -319,7 +326,7 @@ function! MarkdownLevel()
   endif
 endfunction
 augroup MARKDOWN_FOLDING
-  au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
+  au BufEnter *.md setlocal foldexpr=MarkdownLevel()
   au BufEnter *.md setlocal foldmethod=expr
   au BufRead,BufNewFile *.md setlocal foldlevel=999
 augroup END
