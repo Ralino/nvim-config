@@ -227,6 +227,13 @@ tnoremap <C-S> <C-\><C-N><C-W>
 
 tnoremap <C-N> <C-\><C-N>
 
+"FIXME nvim occasionally hangs when using C-C in a terminal.
+"Sort of reproducable when running a forked process in one terminal and
+"pressing C-c in a another one
+"neovim issue: https://github.com/neovim/neovim/issues/20726
+"workaround: use C-X for cancelling programs in terminals
+tnoremap <C-X> <C-C>
+
 "use default clipboard mappings in visual and insert mode
 nnoremap <C-C> "+yiw
 xnoremap <C-C> "+y
