@@ -256,9 +256,10 @@ command! Gtree exe 'split | terminal' FugitivePrepare(['log', '--oneline', '--de
 command! GTree  Gtree
 
 "Your arbitrary deprecations have no power over me
-command! Grename GRename
+"command! Grename GRename
 command! Gremove GRemove
-command! Gmove GMove
+"command! Gmove GMove
+"... actually they have power over me :( ... FIXME handle arguments
 
 endif
 " }}}
