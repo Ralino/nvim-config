@@ -203,7 +203,7 @@ function! s:gfWithFallback()
     let $FZF_DEFAULT_COMMAND = previous_fzf_cmd
   endtry
 endfunction
-nnoremap gf :call <SID>gfWithFallback()<CR>
+nnoremap <silent> gf :call <SID>gfWithFallback()<CR>
 
 function! s:fzfFromItemList(list)
   let ids = []
