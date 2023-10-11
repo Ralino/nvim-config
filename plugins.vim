@@ -234,7 +234,7 @@ endif
 if s:hasPlugin('vim-agriculture')
 
 nmap <leader>/ <Plug>RgRawSearch
-vmap <leader>* y:let @" = shellescape(getreg('"'))<CR>:RgRaw -F -- <C-R>"<C-b><C-Right><C-Right>
+xmap <leader>* y:let @" = shellescape(getreg('"'))<CR>:RgRaw -F -- <C-R>"<C-b><C-Right><C-Right>
 nmap <leader>* yiw:let @" = shellescape(getreg('"'))<CR>:RgRaw -w -F -- <C-R>"<C-b><C-Right><C-Right><C-Right>
 
 endif

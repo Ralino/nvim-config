@@ -227,9 +227,9 @@ tnoremap <C-S> <C-\><C-N><C-W>
 
 tnoremap <C-N> <C-\><C-N>
 
-"FIXME nvim occasionally hangs when using C-C in a terminal.
-"Sort of reproducable when running a forked process in one terminal and
-"pressing C-c in a another one
+"FIXME nvim occasionally hangs when using C-C in a terminal. Sort of
+"reproducable when running a forked process with frequent io in one terminal
+"and pressing C-c in another one
 "neovim issue: https://github.com/neovim/neovim/issues/20726
 "workaround: use C-X for cancelling programs in terminals
 tnoremap <C-X> <C-C>
@@ -274,6 +274,10 @@ sunmap <leader>x
 
 " paste without overwriting register
 xnoremap <leader>p "_dP
+
+" quick substitute
+nmap <leader>s yiw:%s/\V<C-R>"//g<Left><Left>
+xmap <leader>s y:%s/\V<C-R>"//g<Left><Left>
 
 " completion menu mappings
 inoremap <silent><expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
