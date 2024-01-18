@@ -67,6 +67,13 @@ set sidescrolloff=0
 set sidescroll=1
 set listchars=extends:►,precedes:◄
 
+set showbreak=►
+set breakindent
+set linebreak
+noremap <Up> gk
+noremap <Down> gj
+" use :setl virtualedit=all for editing tables
+
 set wildmenu
 set wildmode=longest:full,full
 
