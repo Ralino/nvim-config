@@ -254,14 +254,10 @@ endif
 " fugitive {{{
 if s:hasPlugin('vim-fugitive')
 
-command! Gtree exe 'split | terminal' FugitivePrepare(['log', '--oneline', '--decorate', '--graph', '--all'])
-command! GTree  Gtree
+"command! GTree exe 'split | terminal' FugitivePrepare(['log', '--oneline', '--decorate', '--graph', '--all'])
 
-"Your arbitrary deprecations have no power over me
-"command! Grename GRename
-command! Gremove GRemove
-"command! Gmove GMove
-"... actually they have power over me :( ... FIXME handle arguments
+"Disable legacy commands so they do not get autocompleted
+let g:fugitive_legacy_commands = 0
 
 endif
 " }}}
