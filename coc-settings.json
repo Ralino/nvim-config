@@ -23,6 +23,17 @@
     "<C-k>": "normal:k"
   },
 
+  "languageserver": {
+    //"bitbake": {
+    //  "command": "bitbake-language-server",
+    //  "filetypes": ["bitbake"]
+    //},
+    "slint": {
+      "command": "slint-lsp",
+      "filetypes": ["slint"]
+    }
+  },
+
   "workspace.rootPatterns": [
         "compile_commands.json",
         ".git",

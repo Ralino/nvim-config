@@ -68,6 +68,8 @@ Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'bkad/CamelCaseMotion'
 
+Plug 'slint-ui/vim-slint'
+
 if !executable('fzf')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install()} }
 else
@@ -403,6 +405,8 @@ if s:hasPlugin('fzf.vim')
    \ { 'id': 'go to type definition', 'req': {-> CocHasProvider('typeDefinition')}, 'cmd': {-> CocAction('jumpTypeDefinition') } },
    \ { 'id': 'go to definition', 'req': {-> CocHasProvider('definition')}, 'cmd': {-> CocAction('jumpDefinition') } },
    \ { 'id': 'format buffer', 'req': {-> CocHasProvider('format')}, 'cmd': {-> CocAction('format') } },
+   \ { 'id': 'open docs', 'req': {-> s:hasItem(CocAction('commands'), 'rust-analyzer.openDocs')}, 'cmd': {-> CocAction('runCommand', 'rust-analyzer.openDocs')}},
+   \ { 'id': 'codelens action', 'req': {-> CocHasProvider('codeLens')}, 'cmd': {-> CocAction('codeLensAction') } },
    \ { 'id': 'list diagnostics', 'req': {-> !empty(CocAction('diagnosticList'))}, 'cmd': {-> execute("CocList diagnostics")} },
    \ { 'id': 'disable diagnostics', 'req': {-> !exists("b:coc_diagnostic_disable")}, 'cmd': {-> execute("let b:coc_diagnostic_disable=1 | CocRestart")} },
    \ { 'id': 'enable diagnostics', 'req': {-> exists("b:coc_diagnostic_disable")}, 'cmd': {-> execute("unlet b:coc_diagnostic_disable | CocRestart")} },
